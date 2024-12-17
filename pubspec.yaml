@@ -30,11 +30,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_map: ^3.0.0 # Pastikan menggunakan versi terbaru
+  latlong2: ^0.8.1 # Untuk mendukung koordinat latitude dan longitude
+  # http: ^0.13.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  lottie: ^3.1.3
+  lottie: ^3.0.0
   font_awesome_flutter: ^10.2.1
   
 
@@ -71,7 +74,8 @@ flutter:
     - assets/ricebowl.jpg
     - assets/avatar.jpg
     - assets/peta.jpeg
-    - assets/taman_mawar.jpg
+    - assets/taman_mawar.jpeg
+    - assets/taman_palem.jpeg
 
 
   # The following line ensures that the Material Icons font is

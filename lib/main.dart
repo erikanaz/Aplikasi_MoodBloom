@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mood_bloom/auth/sign-in.dart';
 import 'package:mood_bloom/auth/sign-up.dart';
 import 'package:mood_bloom/screens/akun-page.dart';
+import 'package:mood_bloom/screens/bookmark-page.dart';
 import 'package:mood_bloom/screens/cari-page.dart';
 import 'package:mood_bloom/screens/homepage.dart';
 import 'package:mood_bloom/screens/kuliner.dart';

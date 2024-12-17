@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 10), () {
+    Timer(Duration(seconds: 5), () {
       //note: 1 putaran logo 5 detik
       Navigator.pushReplacement(
         context,

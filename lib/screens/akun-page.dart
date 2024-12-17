@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mood_bloom/auth/sign-in.dart';
+import 'package:mood_bloom/screens/bookmark-page.dart';
 import 'package:mood_bloom/utils/const.dart';
 import 'package:mood_bloom/utils/navigation.dart';
 
@@ -122,7 +123,12 @@ class _AkunPageState extends State<AkunPage> {
                 _buildListTile(
                   icon: Icons.bookmark,
                   title: 'Disimpan',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => BookmarkPage()),
+                    );
+                  },
                 ),
                 _buildListTile(
                   icon: Icons.settings,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mood_bloom/models/destination_model.dart';
+import 'package:mood_bloom/screens/detail_destination.dart';
 import 'package:mood_bloom/utils/const.dart';
 import 'package:mood_bloom/utils/navigation.dart';
-//import 'package:mood_bloom/utils/destination_data.dart'; // Impor file data destinasi
+// import 'destination_detail_page.dart'; // Impor halaman detail destinasi
 
 class CariPage extends StatefulWidget {
   @override
@@ -38,9 +39,11 @@ class _CariPageState extends State<CariPage> {
         .where((destination) =>
             destination.title.toLowerCase().contains(query.toLowerCase()))
         .map((destination) => {
-              'image': destination.imagePath,
+              'image': destination.imagePaths,
               'name': destination.title,
               'rating': destination.rating,
+              'description': destination.description, // Menambahkan deskripsi
+              'destination': destination, // Menambahkan objek destinasi
             })
         .toList();
 
@@ -84,19 +87,9 @@ class _CariPageState extends State<CariPage> {
                   style: TextStyle(color: orangeTextColor),
                 ),
               ),
-              //Icon(Icons.notifications, color: Colors.black),
             ],
           ),
         ),
-        // actions: [
-        //   TextButton(
-        //     onPressed: () => Navigator.pop(context),
-        //     child: Text(
-        //       'Kembali',
-        //       style: TextStyle(color: Colors.orange),
-        //     ),
-        //   ),
-        // ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -114,20 +107,15 @@ class _CariPageState extends State<CariPage> {
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        // fillColor: lightGray, // Warna latar belakang
-                        // filled: true, // Mengaktifkan latar belakang
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                         hintText: 'Cari Tempat',
                         hintStyle: TextStyle(color: Colors.grey),
                         prefixIcon: Padding(
-                          padding: EdgeInsets.only(
-                              left:
-                                  0), // Menyesuaikan ruang kiri jika diperlukan
+                          padding: EdgeInsets.only(left: 0),
                           child: Icon(Icons.search, color: Colors.grey),
                         ),
                         border: InputBorder.none,
-                        // isDense: true,
                       ),
                       onChanged: _searchDestinations, // Fungsi pencarian
                     ),
@@ -176,23 +164,41 @@ class _CariPageState extends State<CariPage> {
                             leading: ClipRRect(
                               borderRadius: BorderRadius.circular(12),
                               child: Image.asset(
-                                item['image'],
-                                // width: 70,
-                                // height: 100,
+                                item['image'][0], // Menampilkan gambar pertama
                                 fit: BoxFit.cover,
                               ),
                             ),
                             title: Text(item['name']),
-                            subtitle: Row(
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Icon(Icons.star, color: Colors.amber, size: 16),
-                                SizedBox(width: 4),
-                                Text('${item['rating']}'),
+                                Row(
+                                  children: [
+                                    Icon(Icons.star,
+                                        color: Colors.amber, size: 16),
+                                    SizedBox(width: 4),
+                                    Text('${item['rating']}'),
+                                  ],
+                                ),
+                                // SizedBox(height: 4),
+                                // Text(
+                                //   item['description'],
+                                //   style: TextStyle(
+                                //       color: Colors.grey, fontSize: 12),
+                                // ),
                               ],
                             ),
                             onTap: () {
-                              // Implementasi navigasi ke detail tempat
-                              print('Navigasi ke detail: ${item['name']}');
+                              // Navigasi ke halaman detail destinasi
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailPage(
+                                    destination: item[
+                                        'destination'], // Mengirimkan destinasi ke halaman detail
+                                  ),
+                                ),
+                              );
                             },
                           ),
                         );

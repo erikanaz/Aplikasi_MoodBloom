@@ -146,9 +146,14 @@ class _PetaPageState extends State<PetaPage> {
               children: [
                 // Tampilan Peta
                 Center(
-                  child: Image.asset(
-                    'assets/peta.jpeg', // Gantilah dengan gambar peta Anda
-                    fit: BoxFit.cover,
+                  child: InteractiveViewer(
+                    boundaryMargin: EdgeInsets.all(8), // Margin batas zoom
+                    minScale: 1.0, // Skala minimum
+                    maxScale: 5.0, // Skala maksimum
+                    child: Image.asset(
+                      'assets/peta.jpeg', // Gantilah dengan gambar peta Anda
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 // Tampilan Keterangan
